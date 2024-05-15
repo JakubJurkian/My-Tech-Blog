@@ -1,5 +1,11 @@
 {
   "projects": {
     "default": "personal-tech-blog-development"
-  }
+  },
+  "hosting": [
+    {
+      "target": "my-tech-blog",
+      "public": "my-tech-blog/dist"
+    }
+  ]
 }
