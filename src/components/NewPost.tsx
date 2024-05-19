@@ -55,13 +55,11 @@ const NewPost = () => {
   };
 
   return (
-    <div className="flex flex-col items-center relative bottom-16 smallMobile:bottom-20 mobile:bottom-28 small:bottom-36 medium:bottom-48 tablet:bottom-60 mx-auto px-3 tablet:h-screen desktop:py-0">
-      <div className="bg-gray-900 p-6 rounded-lg shadow-lg w-full mobile:w-[430px] medium:w-[600px]">
+    <div className="flex flex-col items-center relative bottom-16 xs:bottom-20 sm:bottom-28 smPlus:bottom-36 md:bottom-48 lg:bottom-60 mx-auto px-3 lg:h-screen 2xl:py-0">
+      <div className="bg-gray-900 p-6 rounded-lg shadow-lg w-full sm:w-[430px] md:w-[600px]">
         <h1 className="text-2xl text-center">Create a new post</h1>
         <form className="flex flex-col" onSubmit={handleSubmit}>
-          <div className="form-label">
-            Text
-          </div>
+          <div className="form-label">Text</div>
           <TextEditor placeholder="Write Something..." ref={textRef} />
           <label htmlFor="title" className="form-label">
             Title

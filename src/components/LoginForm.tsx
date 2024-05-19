@@ -75,12 +75,12 @@ const LoginForm: React.FC = () => {
   setTimeout(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   }, 300);
-  
+
   return (
-    <div className="flex flex-col items-center relative bottom-20 smallMobile:bottom-24 mobile:bottom-36 small:bottom-36 medium:bottom-52 tablet:bottom-60 mx-auto mobile:px-5 tablet:h-screen desktop:py-0">
-      <div className="w-full rounded-lg shadow-md border tablet:mt-0 medium:max-w-lg desktop:p-0 bg-gray-900 border-gray-700">
-        <div className="p-5 space-y-4 medium:p-8">
-          <h1 className="text-2xl text-center font-bold tracking-tight tablet:text-2xl text-gray-300">
+    <div className="flex flex-col items-center relative bottom-20 xs:bottom-24 sm:bottom-36 smPlus:bottom-36 md:bottom-52 lg:bottom-60 mx-auto sm:px-5 lg:h-screen 2xl:py-0">
+      <div className="w-full rounded-lg shadow-md border lg:mt-0 md:max-w-lg 2xl:p-0 bg-gray-900 border-gray-700">
+        <div className="p-5 space-y-4 md:p-8">
+          <h1 className="text-2xl text-center font-bold tracking-tight lg:text-2xl text-gray-300">
             Login
           </h1>
           <form className="space-y-4" action="#" onSubmit={handleSubmit}>

@@ -95,10 +95,10 @@ export default function RegisterForm() {
       try {
         const res = await createUserWithEmailAndPassword(auth, email, password);
         const userId = res.user.uid;
-        await setDoc(doc(db, "users", userId), {
+        await setDoc(doc(db, 'users', userId), {
           name,
           email,
-          password
+          password,
         });
 
         setIsLoading(false);
@@ -123,14 +123,14 @@ export default function RegisterForm() {
   };
 
   setTimeout(() => {
-    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   }, 300);
   return (
     <>
-      <div className="flex flex-col items-center relative bottom-20 smallMobile:bottom-28 mobile:bottom-36 small:bottom-44 medium:bottom-52 tablet:bottom-64 mx-auto small:px-5 tablet:h-screen desktop:py-0">
-        <div className="w-full rounded-lg shadow-md border md:mt-0 medium:max-w-lg largeDesktop:p-0 bg-gray-900 border-gray-700">
-          <div className="p-5 space-y-4 medium:p-8">
-            <h1 className="text-2xl text-center font-bold tracking-tight tablet:text-2xl text-gray-300">
+      <div className="flex flex-col items-center relative bottom-20 xs:bottom-28 sm:bottom-36 smPlus:bottom-44 md:bottom-52 lg:bottom-64 mx-auto smPlus:px-5 lg:h-screen 2xl:py-0">
+        <div className="w-full rounded-lg shadow-md border md:mt-0 md:max-w-lg 3xl:p-0 bg-gray-900 border-gray-700">
+          <div className="p-5 space-y-4 md:p-8">
+            <h1 className="text-2xl text-center font-bold tracking-tight lg:text-2xl text-gray-300">
               Create an Account
             </h1>
             <form className="space-y-4" action="#" onSubmit={handleSubmit}>

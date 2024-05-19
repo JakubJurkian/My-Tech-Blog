@@ -14,7 +14,7 @@ function AboutMePage() {
   }, [isLoggedIn, navigate]);
 
   return (
-    <div className="bg-gray-900 p-3 mx-2 rounded-xl shadow-md max-w-lg relative bottom-16 smallMobile:bottom-20 mobile:flex-row mobile:p-4 xs:bottom-28 small:m-auto small:bottom-36 medium:bottom-44 medium:px-6 tablet:bottom-52 tablet:w-4/5 largeDesktop:max-w-xl">
+    <div className="bg-gray-900 p-3 mx-2 rounded-xl shadow-md max-w-lg relative bottom-16 xs:bottom-20 sm:flex-row sm:p-4 sm:bottom-28 smPlus:m-auto smPlus:bottom-36 md:bottom-44 md:px-6 lg:bottom-52 lg:w-4/5 3xl:max-w-xl">
       <MyProfilePage />
     </div>
   );

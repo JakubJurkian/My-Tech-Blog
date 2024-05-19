@@ -8,7 +8,7 @@ export default function SkeletonLoading() {
         <div className="h-2.5 rounded-full bg-gray-700 w-40 mb-4"></div>
         <div className="h-2 rounded-full bg-gray-700 w-20 mb-2.5"></div>
       </div>
-      <div className="flex items-center justify-center h-56 desktop:h-[476px] my-2 rounded bg-gray-700">
+      <div className="flex items-center justify-center h-56 2xl:h-[476px] my-2 rounded bg-gray-700">
         <svg
           className="w-12 text-gray-600"
           xmlns="http://www.w3.org/2000/svg"

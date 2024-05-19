@@ -4,7 +4,7 @@
 
 @layer components {
   .menu-el {
-    @apply block tablet:inline-block px-3 py-2 tablet:rounded-md text-white hover:bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-900 border-b-2 border-b-slate-500 tablet:border-0;
+    @apply block lg:inline-block px-3 py-2 lg:rounded-md text-white hover:bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-900 border-b-2 border-b-slate-500 lg:border-0;
   }
   .form-input {
     @apply border-2 rounded-lg outline-none  block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500;

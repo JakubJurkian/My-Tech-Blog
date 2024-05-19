@@ -5,12 +5,12 @@ function AuthorCard(props: {
   githubLink: string;
 }) {
   return (
-    <div className="bg-gray-900 flex flex-col p-3 mx-2 rounded-xl shadow-md max-w-lg mobile:flex-row relative bottom-16 smallMobile:bottom-20 mobile:bottom-28 medium:bottom-36 mobile:p-4 small:m-auto medium:px-6 tablet:w-4/5 desktop:max-w-xl">
+    <div className="bg-gray-900 flex flex-col p-3 mx-2 rounded-xl shadow-md max-w-lg relative bottom-16 xs:bottom-20 sm:flex-row sm:bottom-28 md:bottom-36 sm:p-4 smPlus:m-auto md:px-6 lg:w-4/5 2xl:max-w-xl">
       <img
         src={props.src}
         alt="author"
         width="148"
-        className="self-center shadow-md rounded-lg my-2 mobile:mr-6 small:w-40 desktop:w-44"
+        className="self-center shadow-md rounded-lg my-2 sm:mr-6 smPlus:w-40 2xl:w-44"
       />
       <div className="text-center">
         <h2 className="text-2xl">{props.author}</h2>
@@ -28,7 +28,7 @@ function AuthorCard(props: {
             className="inline-block mb-2"
           />
         </a>
-        <p className="largeDesktop:text-lg">{props.description}</p>
+        <p className="3xl:text-lg">{props.description}</p>
       </div>
     </div>
   );

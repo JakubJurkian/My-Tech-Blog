@@ -24,12 +24,10 @@ const ErrorPage = () => {
       <MainNavigation />
       <BackgroundImg />
       <div className="flex justify-center">
-        <div className="flex flex-col items-center relative bottom-16 smallMobile:bottom-24 bg-slate-800 p-6 border-2">
+        <div className="flex flex-col items-center relative bottom-16 xs:bottom-24 bg-slate-800 p-6 border-2">
           <span className="text-6xl space">{error.status}</span>
-          <h1 className="text-4xl mb-3 tablet:text-5xl">{title}</h1>
-          <p className="text-md smallMobile:text-xl tablet:text-2xl">
-            {message}
-          </p>
+          <h1 className="text-4xl mb-3 lg:text-5xl">{title}</h1>
+          <p className="text-md xs:text-xl lg:text-2xl">{message}</p>
         </div>
       </div>
     </>

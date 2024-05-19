@@ -7,14 +7,14 @@ import Post from '../components/Post';
 function PostPage() {
   const { postId } = useParams();
   const posts = useSelector((state: RootState) => state.posts.posts);
-  const post = posts.filter(post => post.id === postId);
+  const post = posts.filter((post) => post.id === postId);
 
   setTimeout(() => {
-    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   }, 300);
 
   return (
-    <div className="flex justify-center relative bottom-20 smallMobile:bottom-24 mobile:bottom-32 small:bottom-40 medium:bottom-48 tablet:bottom-56">
+    <div className="flex justify-center relative bottom-20 xs:bottom-24 sm:bottom-32 smPlus:bottom-40 md:bottom-48 lg:bottom-56">
       <Post
         author={post[0].author}
         addedXAgo={post[0].addedXAgo}

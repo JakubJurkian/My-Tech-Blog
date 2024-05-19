@@ -76,8 +76,8 @@ function HomePage() {
         src={authorInfo[2]}
         githubLink={authorInfo[3]}
       />
-      <div className="relative bottom-12 smallMobile:bottom-14 mobile:bottom-20 medium:bottom-28">
-        <div className="max-w-3xl mx-2 tablet:m-auto desktop:max-w-4xl">
+      <div className="relative bottom-12 xs:bottom-14 sm:bottom-20 md:bottom-28">
+        <div className="max-w-3xl mx-2 lg:m-auto 2xl:max-w-4xl">
           <section>
             <div className="flex justify-between">
               <code>Posts</code>

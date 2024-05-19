@@ -63,7 +63,7 @@ const Menu = (props: { onClickedElement(arg: boolean): void }) => {
   );
 
   return (
-    <ul className="py-2 space-y-3 font-medium text-slate-700 tablet:flex tablet:space-y-0 tablet:space-x-2">
+    <ul className="py-2 space-y-3 font-medium text-slate-700 lg:flex lg:space-y-0 lg:space-x-2">
       {isLoggedIn && logged}
       {!isLoggedIn && notLogged}
     </ul>
