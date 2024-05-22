@@ -6,6 +6,7 @@ import BackgroundImg from '../components/BackgroundImg';
 
 const RootLayout = () => {
   const [transition] = useAutoAnimate();
+
   return (
     <>
       <div>

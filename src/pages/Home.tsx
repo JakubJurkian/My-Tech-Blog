@@ -13,8 +13,6 @@ import { howManyPosts } from '../store/postsSlice';
 import filterPosts from '../util/filterPosts';
 import { fetchPostsHandler } from '../util/fetchPosts';
 
-import { handleAuthStateChange } from '../util/authStateObserver';
-
 const authorInfo: string[] = [
   'Jakub Jurkian',
   "Welcome to my blog post! If you are into tech-related topics, you couldn't find a better place.",
@@ -44,11 +42,6 @@ function HomePage() {
   }, [dispatch, filteredPosts.length]);
 
   console.log('home');
-
-  useEffect(() => {
-    const unsubscribe = handleAuthStateChange(dispatch);
-    return () => unsubscribe();
-  }, [dispatch]);
 
   const quantity =
     postsAmount === 1 ? `${postsAmount} post` : `${postsAmount} posts`;

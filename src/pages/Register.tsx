@@ -1,17 +1,16 @@
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { RootState } from '../store/store';
 import RegisterForm from '../components/RegisterForm';
+import useAuth from '../hooks/useAuth';
 
 export default function RegisterPage() {
-  const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
+  const isAuthenticated = useAuth();
   const navigate = useNavigate();
-  
+
   useEffect(() => {
-    if (isLoggedIn) navigate('/');
-  }, [isLoggedIn, navigate]);
+    if (isAuthenticated) return navigate('/');
+  }, [isAuthenticated, navigate]);
 
   return <RegisterForm />;
 }

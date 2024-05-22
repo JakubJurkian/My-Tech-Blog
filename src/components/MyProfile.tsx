@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 
@@ -11,15 +11,19 @@ import { updateAvatar } from '../store/profileSlice';
 
 import guestUser from '/guest-user.webp';
 
+import classes from './MyProfile.module.css';
+
 const MyProfilePage: React.FC = () => {
   const [transition] = useAutoAnimate();
   const [file, setFile] = useState<File | null>(null);
   const [percentage, setPercentage] = useState<number | null>(null);
+  const [isFileSet, setIsFileSet] = useState<boolean | null>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const dispatch = useDispatch();
   const uid = useSelector((state: RootState) => state.auth.user?.uid);
   const avatarUrl = useSelector((state: RootState) => state.profile.avatarUrl);
+  const [imagePreview, setImagePreview] = useState('');
 
   useEffect(() => {
     async function getAvatar() {
@@ -28,18 +32,28 @@ const MyProfilePage: React.FC = () => {
         const docRef = doc(db, 'users', uid);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
-          dispatch(updateAvatar(docSnap.data().avatar));
-          setIsLoading(false);
+          const avatar = docSnap.data().avatar || guestUser;
+          dispatch(updateAvatar(avatar));
+          setImagePreview(avatar);
         } else {
           console.log('No such document!');
-          setIsLoading(false);
         }
+        setIsLoading(false);
       }
     }
     getAvatar();
   }, [uid, dispatch]);
 
   const { name, email } = useSelector((state: RootState) => state.profile);
+
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = e.target.files?.[0];
+    if (selectedFile) {
+      setFile(selectedFile);
+      setImagePreview(URL.createObjectURL(selectedFile));
+      setIsFileSet(true);
+    }
+  };
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -82,22 +96,35 @@ const MyProfilePage: React.FC = () => {
       fileInputRef.current.value = '';
     }
     setFile(null);
+    setIsFileSet(false);
   };
 
   let content;
   if (!isLoading) {
     content = (
-      <img
-        src={avatarUrl ? avatarUrl : guestUser}
-        alt="user image"
-        className="rounded-3xl"
-      />
+      <div className={`${classes['avatar-upload']}`}>
+        <div className={`${classes['avatar-edit']}`}>
+          <input
+            type="file"
+            id="imageUpload"
+            onChange={handleFileChange}
+            ref={fileInputRef}
+          />
+          <label htmlFor="imageUpload"></label>
+        </div>
+        <div className={`${classes['avatar-preview']}`}>
+          <div
+            style={{ backgroundImage: `url(${imagePreview})` }}
+            className={`${classes['image-preview']}`}
+          ></div>
+        </div>
+      </div>
     );
   }
   if (isLoading) {
     content = (
-      <div role="status" className="animate-pulse">
-        <div className="flex items-center justify-center h-56 2xl:h-[476px] my-2 rounded-3xl bg-gray-700">
+      <div role="status" className="animate-pulse w-full">
+        <div className="flex items-center justify-center w-full h-56 my-2 rounded-3xl bg-gray-700">
           <svg
             className="w-12 text-gray-600"
             xmlns="http://www.w3.org/2000/svg"
@@ -119,29 +146,17 @@ const MyProfilePage: React.FC = () => {
         onSubmit={handleSubmit}
         className="flex flex-col place-items-center"
       >
-        <input
-          type="file"
-          id="file"
-          onChange={(e) => {
-            const selectedFile = e.target.files?.[0];
-            if (selectedFile) {
-              setFile(selectedFile);
-            }
-          }}
-          ref={fileInputRef}
-          className="w-3/4 rounded-md border-2 mx-4 file:bg-blue-500 file:mr-3 file:p-1 file:cursor-pointer file:border-none file:hover:bg-blue-400 file:smooth-transition-effect"
-        />
         <button
-          className="bg-blue-500 hover:bg-blue-400 my-4 w-3/4 sm:w-10/12 p-1 text-lg rounded-md disabled:bg-gray-500 disabled:cursor-not-allowed smooth-transition-effect"
-          disabled={percentage !== null && percentage < 100}
+          className="bg-blue-500 hover:bg-blue-400 my-4 w-full p-1 text-lg rounded-md disabled:bg-gray-500 smooth-transition-effect"
+          disabled={(percentage !== null && percentage < 100) || !isFileSet}
         >
           {avatarUrl ? 'Change image' : 'Upload Image'}
         </button>
-      </form>
-      <div className="md:flex gap-8">
-        <div className="w-56" ref={transition}>
+        <div className="w-56 h-56 flex items-center" ref={transition}>
           {content}
         </div>
+      </form>
+      <div className="md:flex gap-8">
         <div className="mt-2 text-lg self-center">
           <p>
             Name: <span className="text-slate-300">{name}</span>
