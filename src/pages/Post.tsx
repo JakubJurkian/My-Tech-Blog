@@ -21,10 +21,10 @@ function PostPage() {
   }, 300);
 
   console.log('post');
-
   return (
     <div className="flex justify-center relative bottom-20 xs:bottom-24 sm:bottom-32 smPlus:bottom-40 md:bottom-48 lg:bottom-56">
       <Post
+        postId={post.postId}
         author={post.author}
         addedXAgo={post.addedXAgo}
         title={post.title}

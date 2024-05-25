@@ -17,6 +17,7 @@ export const fetchPostsOnly = async (dispatch: Dispatch<any>) => {
     const userObj = data[user];
     for (const key in userObj) {
       loadedPosts.push({
+        postId: Object.keys(userObj)[0],
         id: key,
         author: userObj[key].author,
         date: timeAgo(userObj[key].date),
@@ -26,7 +27,6 @@ export const fetchPostsOnly = async (dispatch: Dispatch<any>) => {
         title: userObj[key].title,
         description: userObj[key].description,
       });
-      // console.log(userObj[key].text);
     }
   }
 

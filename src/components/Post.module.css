@@ -40,7 +40,13 @@
 }
 
 .post-content a {
-  color: blue;
+  color: rgb(112, 112, 255);
+  text-decoration: underline;
+  transition: all 0.2s ease-in;
+}
+
+.post-content a:hover {
+  color: rgb(148, 144, 253);
   text-decoration: underline;
 }
 
