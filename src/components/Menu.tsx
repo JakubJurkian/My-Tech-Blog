@@ -38,7 +38,7 @@ const Menu = (props: { onClickedElement(arg: boolean): void }) => {
 
   const logged = (
     <>
-      {email === 'test@test.com' && (
+      {email === 'kuba.jur03@gmail.com' && (
         <li>
           <NavLink
             to="/create-new-post"

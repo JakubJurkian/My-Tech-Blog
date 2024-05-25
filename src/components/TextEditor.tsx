@@ -33,12 +33,10 @@ const TextEditor = React.forwardRef<HTMLDivElement, TextEditorProps>(
 
 const modules = {
   toolbar: [
-    [{ size: [] }],
+    [{ header: [1, 2, false] }],
     [{ font: [] }],
-    ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+    ['bold', 'italic', 'underline', 'strike', 'blockquote', 'code-block'],
     [{ list: 'ordered' }, { indent: '+1' }],
-    ['image', 'video'],
-    ['clean'],
   ],
   clipboard: {
     matchVisual: false,
@@ -57,9 +55,7 @@ const formats = [
   'list',
   'bullet',
   'indent',
-  'link',
-  'image',
-  'video',
+  'code-block',
 ];
 
 export default TextEditor;

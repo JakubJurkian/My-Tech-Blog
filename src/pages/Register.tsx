@@ -12,5 +12,7 @@ export default function RegisterPage() {
     if (isAuthenticated) return navigate('/');
   }, [isAuthenticated, navigate]);
 
+  console.log('register');
+
   return <RegisterForm />;
 }

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback, useMemo } from 'react';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 
 import Posts from '../components/Posts';
@@ -20,26 +20,44 @@ const authorInfo: string[] = [
   'https://github.com/JakubJurkian',
 ];
 
+const selectPosts = (state: RootState) => state.posts.posts;
+const selectPostsAmount = (state: RootState) => state.posts.postsAmount;
+
 function HomePage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [query, setQuery] = useState('');
   const [transition] = useAutoAnimate();
   const dispatch = useDispatch();
-  const posts = useSelector((state: RootState) => state.posts.posts);
-  const postsAmount = useSelector(
-    (state: RootState) => state.posts.postsAmount
+
+  const [debouncedQuery, setDebouncedQuery] = useState(query);
+
+  const posts = useSelector(selectPosts);
+  const postsAmount = useSelector(selectPostsAmount);
+
+  const filteredPosts = useMemo(
+    () => filterPosts(posts, debouncedQuery),
+    [posts, debouncedQuery]
   );
 
-  const filteredPosts = filterPosts(posts, query);
-
-  useEffect(() => {
+  const fetchPosts = useCallback(() => {
     fetchPostsHandler(dispatch, setIsLoading, setError);
   }, [dispatch]);
 
   useEffect(() => {
+    fetchPosts();
     dispatch(howManyPosts(filteredPosts.length));
-  }, [dispatch, filteredPosts.length]);
+  }, [fetchPosts, dispatch, filteredPosts.length]);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedQuery(query);
+    }, 500);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [query]);
 
   console.log('home');
 

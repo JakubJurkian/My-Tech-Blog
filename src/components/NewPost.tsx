@@ -1,5 +1,8 @@
 import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getAuth } from 'firebase/auth';
+import { ref, set } from 'firebase/database';
+import { database } from '../firebase';
 
 import TextEditor from './TextEditor';
 
@@ -18,21 +21,9 @@ const NewPost = () => {
   const descriptionRef = useRef<HTMLTextAreaElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+  const auth = getAuth();
 
-  async function createPostHandler(post: Post) {
-    await fetch(
-      'https://personal-tech-blog-development-default-rtdb.europe-west1.firebasedatabase.app/posts.json',
-      {
-        method: 'POST',
-        body: JSON.stringify(post),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-    );
-  }
-
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
     if (
@@ -49,8 +40,19 @@ const NewPost = () => {
         text: textRef.current?.querySelector('.ql-editor')?.innerHTML,
         title: titleRef.current?.value,
       };
-      createPostHandler(post);
+
+      console.log(textRef);
+
+      const user = auth.currentUser;
+      if (user) {
+        const userId = user.uid;
+        const postId = Date.now();
+        const postRef = ref(database, `posts/${userId}/${postId}`);
+        await set(postRef, post);
+      }
       navigate('/');
+    } else {
+      console.log('Something went wrong.');
     }
   };
 

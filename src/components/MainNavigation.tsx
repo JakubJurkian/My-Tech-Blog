@@ -25,7 +25,7 @@ function App() {
               }
             >
               <img
-                src="./home-34.svg"
+                src="./home-icon.svg"
                 alt="home"
                 className={`${classes['filter-white']}`}
               />

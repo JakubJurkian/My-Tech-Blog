@@ -1,0 +1,108 @@
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4,
+.post-content h5,
+.post-content h6 {
+  font-weight: bold;
+  font-size: initial;
+  margin: 0.67rem 0;
+}
+
+.post-content h1 {
+  font-size: 2rem;
+}
+
+.post-content h2 {
+  font-size: 1.5rem;
+}
+
+.post-content p {
+  margin: 1rem 0;
+}
+
+.post-content ul,
+.post-content ol {
+  margin: 1rem 0;
+  padding-left: 40px;
+  list-style: square;
+}
+
+.post-content ul ul,
+.post-content ol ol,
+.post-content ul ol,
+.post-content ol ul {
+  margin-bottom: 0;
+}
+
+.post-content li {
+  margin-bottom: 0.5rem;
+}
+
+.post-content a {
+  color: blue;
+  text-decoration: underline;
+}
+
+.post-content blockquote {
+  margin: 1rem 40px;
+  padding: 0.5rem 10px;
+  border-left: 5px solid #ccc;
+  font-style: italic;
+}
+
+.post-content code,
+.post-content pre {
+  font-family: Consolas, Monaco, 'Courier New', Courier, monospace;
+  font-size: 1rem;
+}
+
+.post-content pre {
+  display: inline-block;
+  color: white;
+  border-radius: 16px;
+  padding: 10px;
+  overflow: auto;
+}
+
+.post-content code {
+  display: inline-block;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.post-content strong {
+  font-weight: bold;
+}
+
+.post-content em {
+  font-style: italic;
+}
+
+.post-content b {
+  font-weight: bold;
+}
+
+.post-content i {
+  font-style: italic;
+}
+
+.post-content u {
+  text-decoration: underline;
+}
+
+.post-content s {
+  text-decoration: line-through;
+}
+
+.post-content dl {
+  margin: 1rem 0;
+}
+
+.post-content dt {
+  font-weight: bold;
+}
+
+.post-content dd {
+  margin-left: 40px;
+}

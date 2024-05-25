@@ -13,5 +13,7 @@ export default function LoginPage() {
     if (isLoggedIn) navigate('/');
   }, [isLoggedIn, navigate]);
 
+  console.log('login');
+
   return <LoginForm />;
 }

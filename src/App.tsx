@@ -1,19 +1,20 @@
-import { ReactNode, useState } from 'react';
+import { ReactNode, Suspense, lazy, useState } from 'react';
 import { Provider } from 'react-redux';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import store from './store/store';
 
 import RootLayout from './pages/Root';
-import ErrorPage from './pages/Error';
-import HomePage from './pages/Home';
-import PostPage from './pages/Post';
-import LoginPage from './pages/Login';
-import NewPostPage from './pages/NewPost';
-import RegisterPage from './pages/Register';
-import MyProfilePage from './pages/MyProfile';
-import Spinner from './components/Spinner';
 import useAuthStateChange from './hooks/useAuthStateChange';
+import Spinner from './components/Spinner';
+
+const HomePage = lazy(() => import('./pages/Home'));
+const RegisterPage = lazy(() => import('./pages/Register'));
+const LoginPage = lazy(() => import('./pages/Login'));
+const PostPage = lazy(() => import('./pages/Post'));
+const NewPostPage = lazy(() => import('./pages/NewPost'));
+const MyProfilePage = lazy(() => import('./pages/MyProfile'));
+const ErrorPage = lazy(() => import('./pages/Error'));
 
 type AuthCheckerProps = {
   children: ReactNode;
@@ -40,8 +41,8 @@ const router = createBrowserRouter([
       },
       { path: 'login', element: <LoginPage /> },
       { path: 'posts/:postId', element: <PostPage /> },
-      { path: 'create-new-post', element: <NewPostPage /> },
       { path: 'my-profile', element: <MyProfilePage /> },
+      { path: 'create-new-post', element: <NewPostPage /> },
     ],
   },
 ]);
@@ -50,7 +51,9 @@ function App() {
   return (
     <Provider store={store}>
       <AuthChecker>
-        <RouterProvider router={router} />
+        <Suspense fallback={<Spinner />}>
+          <RouterProvider router={router} />
+        </Suspense>
       </AuthChecker>
     </Provider>
   );

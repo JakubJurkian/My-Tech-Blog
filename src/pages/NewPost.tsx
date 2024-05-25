@@ -11,8 +11,10 @@ function NewPostPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isLoggedIn || email !== 'test@test.com') navigate('/');
+    if (!isLoggedIn || email !== 'kuba.jur03@gmail.com') navigate('/');
   }, [isLoggedIn, email, navigate]);
+
+  console.log('new-post');
 
   return <NewPost />;
 }

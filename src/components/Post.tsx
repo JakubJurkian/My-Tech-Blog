@@ -1,3 +1,7 @@
+import DOMPurify from 'dompurify';
+import classes from './Post.module.css';
+import 'react-quill/dist/quill.snow.css';
+
 export default function Post(props: {
   author: string;
   addedXAgo: string;
@@ -5,8 +9,6 @@ export default function Post(props: {
   img: string;
   text: string;
 }) {
-  const createMarkup = () => ({ __html: props.text });
-
   return (
     <div className="flex flex-col w-[98%] max-w-4xl bg-[#04031c6e] rounded-2xl shadow-lg overflow-hidden">
       <div className="flex justify-between">
@@ -21,10 +23,10 @@ export default function Post(props: {
         {props.title}
       </h1>
       <img src={props.img} />
-      <p
-        className="text-lg m-4 break-words"
-        dangerouslySetInnerHTML={createMarkup()}
-      ></p>
+      <div
+        dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(props.text) }}
+        className={`text-lg mx-3 break-words ${classes['post-content']}`}
+      />
     </div>
   );
 }
