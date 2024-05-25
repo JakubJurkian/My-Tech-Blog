@@ -1,7 +1,6 @@
 import DOMPurify from 'dompurify';
 import classes from './Post.module.css';
 import 'react-quill/dist/quill.snow.css';
-import { deletePost } from '../util/deletePost';
 import { getAuth } from 'firebase/auth';
 import { database } from '../firebase';
 import { ref, remove } from 'firebase/database';

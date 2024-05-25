@@ -59,8 +59,6 @@ function HomePage() {
     };
   }, [query]);
 
-  console.log('home');
-
   const quantity =
     postsAmount === 1 ? `${postsAmount} post` : `${postsAmount} posts`;
 
