@@ -1,6 +1,8 @@
 import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
@@ -48,10 +50,13 @@ const MyProfilePage: React.FC = () => {
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
-    if (selectedFile) {
+    if (selectedFile && selectedFile.type.startsWith('image/')) {
       setFile(selectedFile);
       setImagePreview(URL.createObjectURL(selectedFile));
       setIsFileSet(true);
+    } else {
+      toast.error('Something went wrong!');
+      setIsFileSet(false);
     }
   };
 
@@ -75,6 +80,7 @@ const MyProfilePage: React.FC = () => {
           (error) => {
             setIsLoading(false);
             console.log(error);
+            toast.error('Something went wrong!');
           },
           () => {
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
@@ -83,6 +89,7 @@ const MyProfilePage: React.FC = () => {
                 setDoc(ref, { avatar: downloadURL }, { merge: true });
                 dispatch(updateAvatar(downloadURL));
                 setIsLoading(false);
+                toast.success('File uploaded successfully!');
               }
             });
           }
@@ -125,6 +132,7 @@ const MyProfilePage: React.FC = () => {
             id="imageUpload"
             onChange={handleFileChange}
             ref={fileInputRef}
+            accept="image/*"
           />
           <label htmlFor="imageUpload"></label>
         </div>
@@ -143,6 +151,7 @@ const MyProfilePage: React.FC = () => {
 
   return (
     <div className="flex flex-col place-items-center py-3">
+      <ToastContainer theme="dark" />
       <h2 className="text-3xl self-center mb-4">My Profile</h2>
       <form
         onSubmit={handleSubmit}
