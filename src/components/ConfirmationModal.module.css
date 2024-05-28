@@ -1,0 +1,39 @@
+.modal-enter {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+.modal-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
+}
+
+.modal-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.modal-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
+}
+
+.modal-bg-enter {
+  backdrop-filter: blur(0);
+  transition: backdrop-filter 300ms ease-in-out;
+}
+
+.modal-bg-enter-active {
+  backdrop-filter: blur(5px);
+}
+
+.modal-bg-exit {
+  backdrop-filter: blur(5px);
+  transition: backdrop-filter 300ms ease-in-out;
+}
+
+.modal-bg-exit-active {
+  backdrop-filter: blur(0);
+}

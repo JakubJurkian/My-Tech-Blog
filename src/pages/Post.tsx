@@ -11,7 +11,7 @@ function PostPage() {
   if (!post) {
     return (
       <div>
-        <p>Post not found!</p>
+        <p className="text-center text-4xl">Post not found!</p>
       </div>
     );
   }
