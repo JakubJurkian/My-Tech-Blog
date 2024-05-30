@@ -4,6 +4,7 @@ import { useAutoAnimate } from '@formkit/auto-animate/react';
 
 import Menu from './Menu.tsx';
 import classes from './MainNavigation.module.css';
+import homeImg from '/home-icon.svg';
 
 function App() {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
@@ -25,7 +26,7 @@ function App() {
               }
             >
               <img
-                src="./home-icon.svg"
+                src={homeImg}
                 alt="home"
                 className={`${classes['filter-white']}`}
               />

@@ -57,12 +57,7 @@ const ConfirmationModal = (props: any) => {
 
           <div className="space-y-2 p-2">
             <div className="p-4 space-y-2 text-center dark:text-white">
-              <h2
-                className="text-xl font-bold tracking-tight"
-                id="page-action.heading"
-              >
-                Delete Post
-              </h2>
+              <h2 className="text-xl font-bold tracking-tight">Delete Post</h2>
               <p className="text-gray-500">
                 Are you sure you would like to do this?
               </p>

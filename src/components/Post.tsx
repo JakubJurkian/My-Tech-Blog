@@ -68,7 +68,7 @@ export default function Post(props: {
         <img src={props.img} />
         <div
           dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(props.text) }}
-          className={`text-lg mx-3 break-words ${classes['post-content']}`}
+          className={`text-lg mx-3 mt-5 break-words ${classes['post-content']}`}
         />
       </div>
     </>
