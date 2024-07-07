@@ -14,4 +14,4 @@ This is a Tech Blog application built with **_React_**, **_Redux Toolkit_**, **_
 
 **And more!**
 
-You can visit this app here: https://personal-tech-blog-development.web.app/
+You can visit this app here: https://technology-blog.web.app
